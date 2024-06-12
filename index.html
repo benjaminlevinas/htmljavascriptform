@@ -7,118 +7,134 @@
     <title>Document</title>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-           
-            let button = document.getElementById('submitbutton');
 
-            
+        //makes sure the full DOM content is loaded before the Javascript runs
+        document.addEventListener('DOMContentLoaded', function () {
+
+            //assigns variables to textarea and a dropdown element 
             let choice = document.getElementById('other');
             let textArea = document.getElementById('textarea');
 
+            //this function displays the textarea only if the user selects that they want to add special requests
             function hideTextArea() {
                 let myValue = choice.value;
                 if (myValue === "Yes") {
-                textArea.style.display = 'block';
-            } else {
-                textArea.style.display = 'none';
+                    textArea.style.display = 'block';
+                } else {
+                    textArea.style.display = 'none';
+                }
             }
-        }
-      
-        choice.addEventListener('input', hideTextArea);
-        hideTextArea();
 
-    });
+            //calls an input event to start the function when an input is given
+            choice.addEventListener('input', hideTextArea);
+            //runs the function at the start so it's hidden when loaded
+            hideTextArea();
+
+        });
     </script>
 
     <style>
+        /*sets the font family and color for the page */
         html {
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    color: lightseagreen;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            color: lightseagreen;
 
-}
+        }
 
-h1, h3, h4, p {
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        /*sets a different font for the top text*/
+        h1,
+        h3,
+        h4,
+        p {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 
-}
+        }
 
-.box {
-    border: 1px solid brown;
-    border-radius: 5px;
-    margin-bottom: 0.7rem;
-    margin-top: 0.7rem;
-    padding-top: 1rem;
-    background-color: beige;
-    padding-left: 0.4rem;
-}
+        /*assigns margins and styling to each section of the form */
+        .box {
+            border: 1px solid brown;
+            border-radius: 5px;
+            margin-bottom: 0.7rem;
+            margin-top: 0.7rem;
+            padding-top: 1rem;
+            background-color: beige;
+            padding-left: 0.4rem;
+        }
 
-#submitdiv {
-    display: flex;
-    justify-content: center;
-}
+        /* this is for the submit button*/
+        #submitdiv {
+            display: flex;
+            justify-content: center;
+        }
 
-#other {
-    padding-bottom: 0.4rem;
-}
+        /*adds some extra space under the last question*/
+        #other {
+            padding-bottom: 0.4rem;
+        }
 
-#submitbutton {
-    justify-content: center;
-    color: black;
-    border: 2px solid black;
-    font-size: 2rem;
-    background-color: lightseagreen;
-}
+        /* styles the submit button */
+        #submitbutton {
+            justify-content: center;
+            color: black;
+            border: 2px solid black;
+            font-size: 2rem;
+            background-color: lightseagreen;
+        }
 
-#submitbutton:hover {
-    font-size: 3rem;
-    color: blue;
-    background-color: grey;
-    border: 1px solid grey;
-
-}
-
-#submitbutton:active {
-    font-size: 3rem;
-    margin-top: 0.3rem;
-    margin-left: 0.3rem;
-    color: blue;
-    background-color: grey;
-    box-shadow: 10px grey;
-}
+        /* adds some interactivity to the button when hovered over*/
+        #submitbutton:hover {
+            margin-bottom: 1rem;
+            font-size: 2.3rem;
+            border: 1px solid grey;
+            background-color: lightseagreen;
+            color: black;
 
 
-div {
-    padding-bottom: 1rem;
-}
+        }
 
-textarea {
-    margin-top: 0.8rem;
-}
+        /* makes the button look like it is pressed when clicked on*/
+        #submitbutton:active {
+            font-size: 2.5rem;
+            margin-top: 0.3rem;
+            margin-left: 0.3rem;
+            color: blue;
+            background-color: grey;
+            box-shadow: 10px grey;
+        }
 
-.checkboxes {
-    display: flex;
-    align-items: center;
-    align-content: center;
+        /*helps give some space to make things nice and readable*/
+        div {
+            padding-bottom: 1rem;
+        }
 
-.product {
-    padding-right: 2rem;
-    display: flex;
-    flex-direction: column;
-}
+        /*adds some some for text area */
+        textarea {
+            margin-top: 0.8rem;
+        }
 
-.amount {
-    font-size: 0.8em;
-    margin-left: 0.2rem;
-}
+        /* this helps each product appear independently */
+        .product {
+            padding-right: 2rem;
+            display: flex;
+            flex-direction: column;
+        }
 
-@media only screen and (max-width:320px) {
-    footer {
-        display: none;
-    }
-}
+        /* adds a bit of space next to the quantity selection because it was too close the side*/
+        .amount {
+            font-size: 0.8em;
+            margin-left: 0.2rem;
+        }
 
+        /* removes the footer on small devices for responsiveness */
+        @media only screen and (max-width:320px) {
+            footer {
+                display: none;
+            }
+        }
     </style>
 </head>
+
+<!-- starts the page. First comes the title and opening statements: -->
 
 <body>
     <header>
@@ -130,6 +146,7 @@ textarea {
         <p>Below are the components we currently have in stock. If you would like to order a component not listed here,
             we can source it for you. Kindly make any special requests in the "Special Requests" section.</p>
 
+        <!--The form starts here. The form will be sent via email -->
         <form action="mailto:benjaminhill5259@gmail.com" method="POST" enctype="text/plain">
             <section class="intro box">
                 <div>
@@ -146,7 +163,7 @@ textarea {
                 </div>
                 <div>
                     <label for="phone">Phone number</label>
-                    <input id="phone" type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone" required></input>
+                    <input id="phone" type="tel" name="phone" required></input>
                 </div>
                 <div>
                     <label for="contact">Preferred method of contact</label>
@@ -158,6 +175,7 @@ textarea {
                     </select>
                 </div>
             </section>
+            <!--We now list each product in a separate section. Min and max quantities are defined-->
             <section class="box">
                 <h3>CPU</h3>
                 <section class="checkboxes">
@@ -197,16 +215,17 @@ textarea {
                                 name="quantitycorsairram"></input>
                         </div>
                     </div>
-                <div class="product">
-                    <div>
-                        <input id="crucial" type="checkbox"></input>
-                        <label for="crucial">Crucial Pro DDR5 16GB 2-Pack (32GB Total)</label>
+                    <div class="product">
+                        <div>
+                            <input id="crucial" type="checkbox"></input>
+                            <label for="crucial">Crucial Pro DDR5 16GB 2-Pack (32GB Total)</label>
+                        </div>
+                        <div class="amount">
+                            <label for="quantitycrucialram">Quantity:</label>
+                            <input type="number" min="0" max="15" id="quantitycrucialram"
+                                name="quantitycrucialram"></input>
+                        </div>
                     </div>
-                    <div class="amount">
-                        <label for="quantitycrucialram">Quantity:</label>
-                        <input type="number" min="0" max="15" id="quantitycrucialram" name="quantitycrucialram"></input>
-                    </div>
-                </div>
                 </section>
             </section>
             <section class="box">
@@ -223,28 +242,29 @@ textarea {
                                 name="quantitywesterndigital"></input>
                         </div>
                     </div>
-                <div class="product">
-                    <div>
-                        <input id="samsung" type="checkbox"></input>
-                        <label for="samsung">Samsung 990 PCIe M.2 2TB SSD</label>
+                    <div class="product">
+                        <div>
+                            <input id="samsung" type="checkbox"></input>
+                            <label for="samsung">Samsung 990 PCIe M.2 2TB SSD</label>
+                        </div>
+                        <div class="amount">
+                            <label for="quantitysamsung">Quantity:</label>
+                            <input type="number" min="0" max="20" id="quantitysamsung" name="quantitysamsung"></input>
+                        </div>
                     </div>
-                    <div class="amount">
-                        <label for="quantitysamsung">Quantity:</label>
-                        <input type="number" min="0" max="20" id="quantitysamsung" name="quantitysamsung"></input>
+                    <div class="product">
+                        <div>
+                            <input id="seagate" type="checkbox"></input>
+                            <label for="seagate">Seagate BarraCuda 8TB HDD</label>
+                        </div>
+                        <div class="amount">
+                            <label for="quantityseagate">Quantity:</label>
+                            <input type="number" min="0" max="20" id="quantityseagate" name="quantityseagate"></input>
+                        </div>
                     </div>
-                </div>
-                <div class="product">
-                    <div>
-                        <input id="seagate" type="checkbox"></input>
-                        <label for="seagate">Seagate BarraCuda 8TB HDD</label>
-                    </div>
-                    <div class="amount">
-                        <label for="quantityseagate">Quantity:</label>
-                        <input type="number" min="0" max="20" id="quantityseagate" name="quantityseagate"></input>
-                    </div>
-                </div>
                 </section>
             </section>
+            <!--This section asks users if they have any special requests. If they do, a textarea form will appear. -->
             <section class="box">
                 <h3>Special Requests</h3>
                 <label for="other">Do you have any special requests (a specific component, manufacturer, model, storage
@@ -253,15 +273,17 @@ textarea {
                     <option name="choice">No</option>
                     <option name="choice">Yes</option>
                 </select>
-                <textarea id="textarea" placeholder="Please enter your requests here" rows="5" cols="50" value="I would like to order a..."></textarea>
-             </section>
-             <div id="submitdiv">
-             <input type="submit" value="Send via Email" id="submitbutton"></input>
-             </div>
+                <textarea id="textarea" placeholder="Please enter your requests here" rows="5" cols="50"
+                    value="I would like to order a..."></textarea>
+            </section>
+            <div id="submitdiv">
+                <input type="submit" value="Send via Email" id="submitbutton"></input>
+            </div>
         </form>
- </main>
- <footer class="box footer">
-    <p>Thank you for your support!</p>
- </footer>
+    </main>
+    <footer class="box footer">
+        <p>Thank you for your support!</p>
+    </footer>
 </body>
+
 </html>
